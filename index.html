@@ -51,12 +51,12 @@
     </div>
 
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
+    <div class="modal fade" data-backdrop="static" data-keyboard="false" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" href="#" >
+        <div class="modal-dialog" >
+            <div class="modal-content" >
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Agregar nueva mascota</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="label">Agregar nueva mascota</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="resetModal()"></button>
                 </div>
                 <div class="modal-body">
                     <form action="" id="formulario">
@@ -77,14 +77,33 @@
                         </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="guardar">Guardar</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="resetModal()">Cerrar</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="guardar">Agregar</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="modal" tabindex="-1" id="modalEliminar">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">¿Seguro quieres eliminar el dato?</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>Seleccciona una opción.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="confirmarEliminacion()">Sí</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     <div class="container">
         <table class="table">
             <thead>
