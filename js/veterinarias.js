@@ -1,36 +1,40 @@
-const tipo = document.getElementById('tipo');
+const pais = document.getElementById('pais');
 const nombre = document.getElementById('nombre');
-const dueno = document.getElementById('dueno');
+const apellido = document.getElementById('apellidos');
+const identificacion = document.getElementById('identificacion');
 const indice = document.getElementById('indice');
 const form = document.getElementById('formulario');
 const btnGuardar = document.getElementById('guardar');
-const listaMascotas = document.getElementById('lista-mascotas');
+const listaVeterinarias = document.getElementById('listaVeterinarias');
 const titulo = document.getElementById('label');
 
 
-let mascotas = [
-    {tipo: "Gato",
-    nombre: "manchas",
-    dueno: "Mario"
+let veterinarias = [
+    {nombre: "Karen",
+    apellidos: "Vielma",
+    pais: "Colombia",
+    identificacion: "123456"
     },
-    {tipo: "Perro",
-    nombre: "Pluto",
-    dueno: "Angel"
+    {nombre: "Perla",
+    apellidos: "Salazar",
+    pais: "México",
+    identificacion: "654321"
     }
 ];
 
-function listarMascotas()
+function listarVeterinarias()
 {
-    const htmlMascotas = mascotas.map((mascota,index)=>`<tr>
+    const htmlVeterinarias = veterinarias.map((veterinaria,index)=>`<tr>
         <th scope="row">${index}</th>
-        <td>${mascota.tipo}</td>
-        <td>${mascota.nombre}</td>
-        <td>${mascota.dueno}</td>
+        <td>${veterinaria.identificacion}</td>
+        <td>${veterinaria.pais}</td>
+        <td>${veterinaria.nombre}</td>
+        <td>${veterinaria.apellidos}</td>
         <td><button class="btn btn-success editar" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-edit"></i></button>
         <button class="btn btn-danger eliminar" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-whatever="@mdo"><i class="far fa-trash-alt"></i></button>
         </td>
     </tr>`).join("");
-    listaMascotas.innerHTML=htmlMascotas;
+    listaVeterinarias.innerHTML=htmlVeterinarias;
     Array.from(document.getElementsByClassName('editar')).forEach((botonEditar,index)=>botonEditar.onclick=editar(index))
     Array.from(document.getElementsByClassName('eliminar')).forEach((botonEliminar,index)=>botonEliminar.onclick=eliminar(index))
 }
@@ -38,34 +42,36 @@ function enviarDatos(e)
 {
     const datos = 
     {
-        tipo: tipo.value,
         nombre: nombre.value,
-        dueno: dueno.value
+        apellidos: apellidos.value,
+        pais: pais.value,
+        identificacion: identificacion.value
     };
     const accion = btnGuardar.innerHTML;
     switch(accion)
     {
         case 'Editar':
-            mascotas[indice.value] = datos;
+            veterinarias[indice.value] = datos;
             break;
         default:
-            mascotas.push(datos);
+            veterinarias.push(datos);
             break;
     }
-    listarMascotas();
+    listarVeterinarias();
     resetModal();
 }
 function editar(index)
 {
     return function cuandoCliqueo()
     {
-        titulo.innerHTML='Editar mascota';
+        titulo.innerHTML='Editar veterinario';
         btnGuardar.innerHTML='Editar';
 
-        const mascota = mascotas[index];
-        nombre.value = mascota.nombre;
-        dueno.value = mascota.dueno;
-        tipo.value = mascota.tipo;
+        const veterinaria = veterinarias[index];
+        nombre.value = veterinaria.nombre;
+        apellidos.value = veterinaria.apellidos;
+        pais.value = veterinaria.pais;
+        identificacion.value = veterinaria.identificacion;
         indice.value = index;
     }
 }
@@ -73,9 +79,9 @@ function editar(index)
 function resetModal()
 {
     nombre.value = '';
-    dueno.value = '';
-    tipo.value = 'Tipo animal';
-    indice.value = '';
+    apellidos.value= '';
+    pais.value= 'Selecciona un país';
+    identificacion.value= '';
     btnGuardar.innerHTML = 'Agregar'
 }
 
@@ -83,19 +89,15 @@ function eliminar(index)
 {
     return function clickEliminar()
     {
-        mascotas = mascotas.filter((mascota,indiceMascota)=>indiceMascota !== index);
+        veterinarias = veterinarias.filter((veterinaria,indiceVeterinaria)=>indiceVeterinaria !== index);
     }
 }
 function confirmarEliminacion()
 {
     eliminar();
-    listarMascotas();
+    listarVeterinarias();
 }
-listarMascotas();
+listarVeterinarias();
 
 form.onsubmit = enviarDatos;
 btnGuardar.onclick = enviarDatos;
-
-
-
-

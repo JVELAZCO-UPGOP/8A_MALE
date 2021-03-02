@@ -1,36 +1,40 @@
-const tipo = document.getElementById('tipo');
+const pais = document.getElementById('pais');
 const nombre = document.getElementById('nombre');
-const dueno = document.getElementById('dueno');
+const apellido = document.getElementById('apellidos');
+const identificacion = document.getElementById('identificacion');
 const indice = document.getElementById('indice');
 const form = document.getElementById('formulario');
 const btnGuardar = document.getElementById('guardar');
-const listaMascotas = document.getElementById('lista-mascotas');
+const listaDuenos = document.getElementById('lista-duenos');
 const titulo = document.getElementById('label');
 
 
-let mascotas = [
-    {tipo: "Gato",
-    nombre: "manchas",
-    dueno: "Mario"
+let duenos = [
+    {nombre: "Karen",
+    apellidos: "Vielma",
+    pais: "Colombia",
+    identificacion: "123456"
     },
-    {tipo: "Perro",
-    nombre: "Pluto",
-    dueno: "Angel"
+    {nombre: "Perla",
+    apellidos: "Salazar",
+    pais: "México",
+    identificacion: "654321"
     }
 ];
 
-function listarMascotas()
+function listarDuenos()
 {
-    const htmlMascotas = mascotas.map((mascota,index)=>`<tr>
+    const htmlDuenos = duenos.map((dueno,index)=>`<tr>
         <th scope="row">${index}</th>
-        <td>${mascota.tipo}</td>
-        <td>${mascota.nombre}</td>
-        <td>${mascota.dueno}</td>
+        <td>${dueno.identificacion}</td>
+        <td>${dueno.pais}</td>
+        <td>${dueno.nombre}</td>
+        <td>${dueno.apellidos}</td>
         <td><button class="btn btn-success editar" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-edit"></i></button>
         <button class="btn btn-danger eliminar" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-whatever="@mdo"><i class="far fa-trash-alt"></i></button>
         </td>
     </tr>`).join("");
-    listaMascotas.innerHTML=htmlMascotas;
+    listaDuenos.innerHTML=htmlDuenos;
     Array.from(document.getElementsByClassName('editar')).forEach((botonEditar,index)=>botonEditar.onclick=editar(index))
     Array.from(document.getElementsByClassName('eliminar')).forEach((botonEliminar,index)=>botonEliminar.onclick=eliminar(index))
 }
@@ -38,34 +42,36 @@ function enviarDatos(e)
 {
     const datos = 
     {
-        tipo: tipo.value,
         nombre: nombre.value,
-        dueno: dueno.value
+        apellidos: apellidos.value,
+        pais: pais.value,
+        identificacion: identificacion.value
     };
     const accion = btnGuardar.innerHTML;
     switch(accion)
     {
         case 'Editar':
-            mascotas[indice.value] = datos;
+            duenos[indice.value] = datos;
             break;
         default:
-            mascotas.push(datos);
+            duenos.push(datos);
             break;
     }
-    listarMascotas();
+    listarDuenos();
     resetModal();
 }
 function editar(index)
 {
     return function cuandoCliqueo()
     {
-        titulo.innerHTML='Editar mascota';
+        titulo.innerHTML='Editar dueño';
         btnGuardar.innerHTML='Editar';
 
-        const mascota = mascotas[index];
-        nombre.value = mascota.nombre;
-        dueno.value = mascota.dueno;
-        tipo.value = mascota.tipo;
+        const dueno = duenos[index];
+        nombre.value = dueno.nombre;
+        apellidos.value = dueno.apellidos;
+        pais.value = dueno.pais;
+        identificacion.value = dueno.identificacion;
         indice.value = index;
     }
 }
@@ -73,9 +79,9 @@ function editar(index)
 function resetModal()
 {
     nombre.value = '';
-    dueno.value = '';
-    tipo.value = 'Tipo animal';
-    indice.value = '';
+    apellidos.value= '';
+    pais.value= 'Selecciona un país';
+    identificacion.value= '';
     btnGuardar.innerHTML = 'Agregar'
 }
 
@@ -83,19 +89,15 @@ function eliminar(index)
 {
     return function clickEliminar()
     {
-        mascotas = mascotas.filter((mascota,indiceMascota)=>indiceMascota !== index);
+        duenos = duenos.filter((dueno,indiceDueno)=>indiceDueno !== index);
     }
 }
 function confirmarEliminacion()
 {
     eliminar();
-    listarMascotas();
+    listarDuenos();
 }
-listarMascotas();
+listarDuenos();
 
 form.onsubmit = enviarDatos;
 btnGuardar.onclick = enviarDatos;
-
-
-
-
