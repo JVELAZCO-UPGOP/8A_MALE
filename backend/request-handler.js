@@ -1,3 +1,7 @@
+const url = require("url");
+const StringDecoder = require("string_decoder").StringDecoder;
+const enrutador = require('./enrutador');
+
 module.exports = (req, res) => {
     //1. Obtener url desde el objeto request
     const urlActual = req.url;
@@ -11,6 +15,25 @@ module.exports = (req, res) => {
 
     //3.1 Obtener el método HTTP
     const metodo = req.method.toLowerCase();
+    
+    //3.1.1 dar permisos de CORS escribiendo los headers
+    res.setHeader("Access-Control-Allow-Origin" , "*");
+    res.setHeader("Access-Control-Allow-Headers" , "*");
+    res.setHeader(
+        "Access-Control-Request-Methods", 
+        "OPTIONS,GET,PUT,DELETE,POST"
+    );
+    res.setHeader(
+        "Access-Control-Allow-Methods", 
+        "OPTIONS,GET,PUT,DELETE,POST"
+    );
+
+    //3.1.2 dar respuesta inmediata cuando el método sea options
+    if(metodo === 'options') {
+        res.writeHead(204);
+        res.end();
+        return;
+    }
 
     //3.2 Obtener variables del query url
     const {query = {}} = urlParseada;
