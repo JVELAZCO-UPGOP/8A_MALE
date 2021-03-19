@@ -8,7 +8,7 @@ const form = document.getElementById('formulario');
 const btnGuardar = document.getElementById('guardar');
 const listaMascotas = document.getElementById('lista-mascotas');
 const titulo = document.getElementById('label');
-const url = 'http://localhost:5000/mascotas';
+const url = 'https://veterinaria-backend-inky.vercel.app/mascotas';
 
 
 let mascotas = [];

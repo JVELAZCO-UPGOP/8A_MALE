@@ -6,7 +6,7 @@ const form = document.getElementById('formulario');
 const btnGuardar = document.getElementById('guardar');
 const listaDuenos = document.getElementById('lista-duenos');
 const titulo = document.getElementById('label');
-const url = 'http://localhost:5000/duenos';
+const url = 'https://veterinaria-backend-inky.vercel.app/duenos';
 
 
 let duenos = [];

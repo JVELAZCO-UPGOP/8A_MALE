@@ -7,7 +7,7 @@ const form = document.getElementById('formulario');
 const btnGuardar = document.getElementById('guardar');
 const listaVeterinarias = document.getElementById('listaVeterinarias');
 const titulo = document.getElementById('label');
-const url = 'http://localhost:5000/veterinarias';
+const url = 'https://veterinaria-backend-inky.vercel.app/veterinarias';
 
 let veterinarias = [];
 
