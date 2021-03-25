@@ -2,9 +2,7 @@ import React,{useState} from 'react';
 import './ActionsMenu.css';
 import Alert from "../Alert";
 
-function ActionsMenu() {
-    const [mostrarAlerta, setMostrarAlerta] = useState(false);
-    const alertSwitch = () => setMostrarAlerta(!mostrarAlerta);
+function ActionsMenu({cambiarModal = () => {}}) {
     return( 
         <div className="containerActions">
             <h1>Mascotas</h1>
@@ -14,10 +12,9 @@ function ActionsMenu() {
                 data-bs-toggle="modal" 
                 data-bs-target="#exampleModal"
                 data-bs-whatever="@mdo"
-                onClick={alertSwitch}
+                onClick={cambiarModal}
                 >
                 Agregar</button>
-                    {mostrarAlerta && <Alert alertSwitch= {alertSwitch} /> }
             </div>
         </div>)
 }

@@ -31,7 +31,7 @@ function Nav() {
                 </form>
             </div>
         </div>
-    </nav>)
+    </nav>);
 }
 
 export default Nav;

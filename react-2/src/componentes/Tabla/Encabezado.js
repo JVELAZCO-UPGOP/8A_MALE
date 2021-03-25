@@ -16,13 +16,3 @@ function Encabezado(props) {
     );
 }
 export default Encabezado;
-
-
-{/* <thead>
-    <tr>
-        <th scope="col">Tipo</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Dueño</th>
-
-    </tr>
-</thead> */}

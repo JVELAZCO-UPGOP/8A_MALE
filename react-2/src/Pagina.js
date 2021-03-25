@@ -1,39 +1,34 @@
-import React from "react";
-import Nav from "./componentes/Nav/index";
+import React, { Component } from "react";
+import Nav from "./componentes/Nav";
 import ActionsMenu from "./componentes/ActionsMenu";
 import Tabla from "./componentes/Tabla";
 import Modal from "./componentes/Modal";
 
+class Pagina extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            mostraModal: false,
+        };
+    }
 
-function Mascotas() {
-    return (
-        <div class="container">
-            <Nav/>
-            <ActionsMenu/>
-            <Modal/>
+    cambiarModal = () => {
+        this.setState({ mostraModal: !this.state.mostraModal })
+    };
+    //codigo del componente
 
-        <div className="modal" tabindex="-1" id="modalEliminar">
-            <div className="modal-dialog">
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title">¿Seguro quieres eliminar el dato?</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
-                    </div>
-                    <div className="modal-body">
-                        <p>Seleccciona una opción.</p>
-                    </div>
-                    <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                        <button type="button" className="btn btn-primary" data-bs-dismiss="modal"
-                            onclick="confirmarEliminacion()">
-                            Sí</button>
-                    </div>
-                </div>
+    //el método render siempre debe ir de último
+    render() {
+        return (
+            <div class="container">
+                <Nav />
+                <ActionsMenu cambiarModal={this.cambiarModal} />
+                <Tabla />
+                {this.state.mostraModal && <Modal cambiarModal={this.cambiarModal} />}
             </div>
-        </div>
-        <Tabla/>;
-    </div>
-    );
+        );
+    }
+
 }
 
-export default Mascotas;
+export default Pagina;

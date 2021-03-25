@@ -1,5 +1,6 @@
 import React from 'react';
 import BotonAccion from "../BotonAccion";
+import "./Fila.css"
 
 function Fila({mascota,index}) {
     return (
