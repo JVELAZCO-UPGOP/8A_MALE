@@ -3,32 +3,18 @@ import Encabezado from "./Encabezado";
 import Fila from "./Fila";
 import "./Tabla.css";
 
-function Tabla() {
-    const [mascotas, setMascotas] = useState([
-        {
-            tipo: "Gato",
-            nombre: "manchas",
-            dueno: "Esteban",
-        },
-        {
-            tipo: "Perro",
-            nombre: "manchas",
-            dueno: "John",
-        },
-    ]);
-    const columnas = mascotas.length > 0 ? Object.keys(mascotas[0]) : []
+function Tabla({ entidades = [], editarEntidad = () => { }, eliminarEntidad = () => { } }) {
+    const columnas = entidades.length > 0 ? Object.keys(entidades[0]) : []
     return (
-            <table className="table">
-                <Encabezado columnas={columnas} />
-                <tbody id="lista-mascotas">
-                    {""}
-                    {mascotas.map(
-                        (mascota, index) => (
-                            <Fila mascota={mascota} index= {index} />
-                    ))}
-                </tbody>
-            </table>
-        );
+        <table className="table">
+            <Encabezado columnas={columnas} />
+            <tbody id="lista-mascotas">
+                {entidades.map((entidad, index) => (
+                    <Fila key={`fila-${index}`} index={index} entidad={entidad} editarEntidad={editarEntidad} eliminarEntidad={eliminarEntidad} />
+                ))}
+            </tbody>
+        </table>
+    );
 }
 
 export default Tabla;
