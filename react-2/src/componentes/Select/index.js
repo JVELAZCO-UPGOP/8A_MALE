@@ -10,6 +10,7 @@ function Select({
 }) {
     return (
         <select
+        id={nombreCampo}
         className="form-select"
         onChange={onChange}
         name={nombreCampo}

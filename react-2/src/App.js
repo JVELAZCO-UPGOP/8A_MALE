@@ -1,11 +1,22 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './App.css';
 import Pagina from "./Pagina";
+import Nav from "./componentes/Nav";
 
 
 function App() {
   return (
-    <Pagina titulo="Mascotas" entidad = "mascotas"/>
+    <div className="container">
+      <Nav />
+      <Switch>
+
+        <Route exact path="/" component={(props) => (<Pagina {...props} titulo="Mascotas" entidad="mascotas" />)} />
+        <Route path="/veterinarias" component={(props) => (<Pagina {...props} titulo="Veterinarias" entidad="veterinarias" />)} />
+        <Route path="/consultas" component={(props) => (<Pagina {...props} titulo="Consultas" entidad="consultas" />)} />
+        <Route path="/duenos" component={(props) => (<Pagina {...props} titulo="Dueños" entidad="duenos" />)} />
+      </Switch>
+    </div>
   );
 }
 
