@@ -3,24 +3,24 @@ import Encabezado from "./Encabezado";
 import Fila from "./Fila";
 import "./Tabla.css";
 
-function Tabla({ 
+function Tabla({
     entidades = [],
     editarEntidad = () => { },
     eliminarEntidad = () => { },
-    columnas=[],
+    columnas = [],
 }) {
     return (
         <table className="table">
             <Encabezado columnas={columnas} />
             <tbody id="lista-mascotas">
                 {entidades.map((entidad, index) => (
-                    <Fila 
-                    key={`fila-${index}`} 
-                    index={index} 
-                    entidad={entidad} 
-                    editarEntidad={editarEntidad} 
-                    eliminarEntidad={eliminarEntidad} 
-                    columnas = {columnas}
+                    <Fila
+                        key={`fila-${index}`}
+                        index={index}
+                        entidad={entidad}
+                        editarEntidad={editarEntidad}
+                        eliminarEntidad={eliminarEntidad}
+                        columnas={columnas}
                     />
                 ))}
             </tbody>
