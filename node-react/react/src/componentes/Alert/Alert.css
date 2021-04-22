@@ -1,37 +1,36 @@
 .alert {
-    position: relative;
-    padding: 1rem 1rem;
-    margin-bottom: 1rem;
-    border: 1px solid transparent;
-    border-radius: .25rem;
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
 }
+
 .alert-danger {
-    color: #842029;
-    background-color: #f8d7da;
-    border-color: #f5c2c7;
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
 }
+
 .alert-dismissible {
-    padding-right: 3rem;
+  padding-right: 4rem;
 }
-.alert-dismissible .btn-close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 2;
-    padding: 0.5rem 0.5rem;
+
+.alert-dismissible .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: inherit;
+  background-color: transparent;
+  border: none;
 }
-[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
-    cursor: pointer;
-}
-.btn-close {
-    box-sizing: content-box;
-    width: 1em;
-    height: 1em;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    padding: .25em .25em;
-    color: #000;
-    border: 0;
-    background: transparent;
-    border-radius: .25rem;
-    opacity: .5;
+
+.close {
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: .5;
 }
